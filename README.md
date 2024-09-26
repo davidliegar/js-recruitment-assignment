@@ -10,7 +10,7 @@ The application is just a prototype; therefore, a lot of improvements can be mad
 
 - **Architecture:** Although the main code architecture is done, better abstractions using TypeScript to create adapters for the API would be beneficial.
 - **Design:** The design does not have a proper mobile layout and must be updated.
-- **Design:** The design does not have proper loaders or skeletons pages
+- **Design:** The design does not have proper loaders or skeletons pages.
 - **Business Logic:** Unavailable slots are not being displayed.
 - **Testing:** Unit tests are only covering a small part of the application.
 

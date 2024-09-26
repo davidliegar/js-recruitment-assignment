@@ -10,7 +10,8 @@
       class="see-more"
       @click="seeMore = !seeMore"
     >
-      <slot name="see-more"/>
+      <slot v-if="seeMore" name="see-less"/>
+      <slot v-else name="see-more"/>
       <Icon class="icon" icon="mdi:chevron-down" />
     </button>
   </div>

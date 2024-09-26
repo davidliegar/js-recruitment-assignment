@@ -49,6 +49,10 @@
     <template #see-more>
       See more hours
     </template>
+
+    <template #see-less>
+      See less hours
+    </template>
   </card-wrapper>
 
   <book-slot-modal 
