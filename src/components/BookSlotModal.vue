@@ -1,6 +1,6 @@
 <template>
   <dialog 
-    class="dialog" 
+    class="dialog"
     ref="modal"
   >
     <doc-input 
@@ -30,6 +30,7 @@
       <doc-button variant="secondary" @click="emit('on-close')">Close</doc-button>
       <doc-button
         :disabled="isDisabled"
+        data-testid="cta"
         @click="emit('on-save', form)"
       >
         Book
