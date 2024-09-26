@@ -1,47 +1,168 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <section>
+      <h2>
+        Confirm your appointment with 
+        <strong>{{ data.appointment?.doctorName }}</strong>
+      </h2>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+      <card-wrapper
+        v-if="data.appointment"
+        class="current-appointment"
+      >
+        <Icon class="icon" icon="radix-icons:calendar" />
+        <p class="paragraph">{{ format(data.appointment.date, "'On' EEEE dd, LLL yyyy 'at' HH:mm") }}</p>
+      </card-wrapper>
+  </section>
 
-  <main>
-    <TheWelcome />
-  </main>
+  <section class="unexpected-situation">
+      <h2>
+        <strong>You have an unexpected situation?</strong>  
+      </h2>
+      <p class="paragraph">You can change the appointment for when it suits you better</p>
+  </section>
+
+  <card-wrapper
+    v-if="data.weekSlots"
+    class="calendar"
+    expand-from="500px"
+  >
+    <icon-button 
+      icon="material-symbols:chevron-left" 
+      @click="getPrevSchedule"
+    />
+    
+    <day-schedule 
+      v-for="(info, day) in data.weekSlots"
+      class="day"
+      :key="day"
+      :date="day"
+      :day-schedule="info"
+      @on-click="openModal"
+    />
+
+    <icon-button 
+      icon="material-symbols:chevron-right" 
+      @click="getNextSchedule"
+    />
+
+    <template #see-more>
+      See more hours
+    </template>
+  </card-wrapper>
+
+  <book-slot-modal 
+    :open="data.openModal"
+    @on-close="data.openModal = false"
+    @on-save="saveForm"
+  />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script setup lang="ts">
+import { reactive } from 'vue'
+import { addWeeks, format } from "date-fns"
+import { Icon } from '@iconify/vue'
+import BookSlotModal, { type BookSlotForm } from '@/components/BookSlotModal.vue'
+import type { DeepPartial } from '@/types/deepPartial'
+import {
+  getWeeklySlots,
+  getCurrentAppointment,
+  bookSlot,
+  isAValidBookAppointment,
+  type Appointment,
+  type WeekSlots,
+  type BookAppointment,
+  type SlotTime
+} from "@/modules/appointment"
+
+import IconButton from '@/components/DocButton.vue'
+import DaySchedule from '@/components/DaySchedule.vue'
+import CardWrapper from '@/components/CardWrapper.vue'
+
+interface Data {
+  weekSlots?: WeekSlots
+  appointment?: Appointment
+  today: Date
+  currentDayShowing: Date
+  openModal?: boolean
+  form: DeepPartial<BookAppointment>
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+const data = reactive<Data>({
+  today: new Date(),
+  currentDayShowing: new Date(),
+  form: {}
+})
+
+async function getNextSchedule() {
+  data.currentDayShowing = addWeeks(data.currentDayShowing, 1)
+  data.weekSlots = await getWeeklySlots(data.currentDayShowing)
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+async function getPrevSchedule() {
+  data.currentDayShowing = addWeeks(data.currentDayShowing, -1)
+  data.weekSlots = await getWeeklySlots(data.currentDayShowing)
+}
+
+async function created() {
+  data.weekSlots = await getWeeklySlots(data.today)
+  data.appointment = await getCurrentAppointment()
+}
+
+function openModal (slot: SlotTime) {
+  data.form.start = slot.start
+  data.form.end = slot.end
+  data.openModal = true
+}
+
+function saveForm({ comments, ...patient }: BookSlotForm) {
+  data.form.comments = comments
+  data.form.patient = patient
+  if (isAValidBookAppointment(data.form)) {
+    try {
+      bookSlot(data.form)
+    } finally {
+      data.openModal = false
+    }
+  }
+}
+
+created()
+</script>
+
+<style lang="postcss" scoped>
+strong {
+  font-weight: 700
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  padding: 32px;
+  text-align: center;
+  justify-items: center;
+  margin: 2rem 0;
+}
+
+.current-appointment {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 2rem 0;
+
+  & .icon {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  & .paragraph {
+    font-weight: 600;
   }
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+.unexpected-situation {
+  & .paragraph {
+    font-size: 1.4rem;
   }
 }
 </style>

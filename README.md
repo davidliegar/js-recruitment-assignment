@@ -1,81 +1,64 @@
-# Docplanner Technical Test
+# vue-project
 
-Welcome onboard!
+This template should help get you started developing with Vue 3 in Vite.
 
-As you may have already seen, we really like to experiment and iterate here at Docplanner and just now we’re dealing
-with a new amazing feature for our users: **reschedule an appointment!**
+## Recommended IDE Setup
 
-So your first task with us will be to develop a fast prototype for a small app that allows our patients to reschedule an
-existing appointment. This is the design:
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-![Basic design](./assets/ui-example.png)
+## Type Support for `.vue` Imports in TS
 
-<sup><i>You can see a preview of a working application with all the features at the end of the readme.</i></sup>
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-As you can see, when the users access the app they see basic data about the current appointment: the doctor and the
-date. As initial data, suppose you had an appointment with **Dr. Simeon Molas** on **Friday, May 21th at 10:30**.
+## Customize configuration
 
-The available slots for the next seven days are shown, starting from today. Only a few slots are initially shown but
-there is a button to “See more hours” under them. Some of the slots may be **Taken**, so they’re not available to the
-patient to book.
+See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-The user could explore future weeks, but not past weeks, by using the right and left arrows on the header of the
-calendar. Whenever he finds a slot he’d like to book, he just clicks on it and the appointment and confirm. If the
-reschedule is successful, the date of the appointment is updated. Since the user clicks the slot until he gets an
-answer, a loading spinner with crossed-out date to be changed will appear.
+## Project Setup
 
-In order to get and manipulate the data you’ll have to use our API.
-
-Basically the GET where you'll retrieve slots for a maximum of seven days:
-
-- https://draliatest.azurewebsites.net/api/availability/GetWeeklySlots/{yyyyMMdd}
-
-And the POST with an example of the request’s body used on the endpoint:
-
-- https://draliatest.azurewebsites.net/api/availability/BookSlot
-
-```
-{
-  "Start": Start timestamp (string "YYYY-MM-DD HH:mm:ss"),
-  "End": End timestamp (string "YYYY-MM-DD HH:mm:ss"),
-  "Comments": Additional instructions for the doctor (string),
-  "Patient" : {
-    "Name" : Patient Name (string),
-    "SecondName" : Patient SecondName (string),
-    "Email" : Patient Email (string),
-    "Phone" : Patient Phone (string)
-  }
-}
+```sh
+npm install
 ```
 
-## Notes
+### Compile and Hot-Reload for Development
 
-Keep in mind that this is a prototype, we don’t expect from you to get the best possible solution but the best you could
-do **in a few hours**, so your criteria is important. **The solution should work for every day of the week**.
-
-Although it’s just a prototype, we’d like to see some structure on your code. Treat it more as a large-scale production
-application — show your best skills, so we can know you better.
-
-We’ll look at how you use the framework/libraries, architecture, text coverage, readability, maintainability,
-performance, adherence to best coding practices. If you skip some of those, please provide comments, so we know what's
-your approach.
-
-Animations on going forward, backward or on see more slots are not mandatory.
-
-In order to make it easier for you, we’ll provide a boilerplate you can start the project with. Feel free to use any
-library that it could fit to your solution. Also, boilerplate could be outdated, don't hesitate to update it or totally
-remove it.
-
-## Our expectations
-
-Use the framework you feel comfortable with.
-
-#### To start from boilerplate you can execute:
-
-```
-yarn install && yarn serve
+```sh
+npm run dev
 ```
 
-## Preview
+### Type-Check, Compile and Minify for Production
 
-![](./assets/video.gif)
+```sh
+npm run build
+```
+
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:unit
+```
+
+### Run End-to-End Tests with [Playwright](https://playwright.dev)
+
+```sh
+# Install browsers for the first run
+npx playwright install
+
+# When testing on CI, must build the project first
+npm run build
+
+# Runs the end-to-end tests
+npm run test:e2e
+# Runs the tests only on Chromium
+npm run test:e2e -- --project=chromium
+# Runs the tests of a specific file
+npm run test:e2e -- tests/example.spec.ts
+# Runs the tests in debug mode
+npm run test:e2e -- --debug
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
