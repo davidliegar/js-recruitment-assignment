@@ -1,18 +1,18 @@
-# vue-project
+# js-recruitment-assignment
 
-This template should help get you started developing with Vue 3 in Vite.
+The **js-recruitment-assignment** is a task for a job recruitment. The idea is to create a working solution for an application to reschedule an appointment within 4-5 hours
 
-## Recommended IDE Setup
+Live environment: https://reschedule-appointment.vercel.app/
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Next Steps
 
-## Type Support for `.vue` Imports in TS
+The application is just a prototype; therefore, a lot of improvements can be made, with the highest priorities being:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- **TypeScript:** Although the main code architecture is done, better abstractions using TypeScript to create adapters for the API would be beneficial.
+- **CSS:** The design does not have a proper mobile layout and must be updated.
+- **Business Logic:** Unavailable slots are not being displayed.
+- **Testing:** Unit tests are only covering a small part of the application.
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
@@ -49,12 +49,6 @@ npm run build
 
 # Runs the end-to-end tests
 npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
