@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { format, compareAsc, setHours } from 'date-fns'
 import type { SlotTime } from "@/modules/appointment"
 
