@@ -71,7 +71,6 @@ watchEffect(() => {
   if (props.open) {
     modal.value?.showModal()
   } else {
-    console.log('check')
     modal.value?.close()
   }
 })

@@ -8,7 +8,12 @@
     }"
     @click="emits('on-click')"
   >
-    <Icon v-if="icon" class="icon" :icon="icon" />
+    <Icon 
+      v-if="icon" 
+      class="icon" 
+      :icon="icon" 
+      data-testid="icon"
+    />
     <slot />
   </button>
 </template>
