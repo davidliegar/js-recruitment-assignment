@@ -3,7 +3,8 @@ import { isDate } from 'date-fns'
 export type Appointment = {
   doctorId: string
   doctorName: string
-  date: Date
+  start: Date
+  end: Date
 }
 
 export type BookAppointment = {

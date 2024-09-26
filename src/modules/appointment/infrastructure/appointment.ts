@@ -4,11 +4,15 @@ import type { GetWeeklySlotsApi } from './appointmentTypes'
 import type { WeekSlots } from '../domain/weekSlots'
 import type { Appointment, BookAppointment } from '../domain/appointment'
 
+let mockStartDate = set(new Date(), { hours: 10, minutes: 10 })
+let mockEndDate = set(new Date(), { hours: 10, minutes: 10 })
+
 export const getCurrentAppointment = (): Promise<Appointment> => {
   return Promise.resolve({
     doctorId: '1',
     doctorName: 'Dr Simeon Molas',
-    date: set(new Date(), { hours: 10, minutes: 10 })
+    start: mockStartDate,
+    end: mockEndDate
   })
 }
 
@@ -42,6 +46,9 @@ export const getWeeklySlots = (dateInput: Date): Promise<WeekSlots> => {
 }
 
 export const bookSlot = (form: BookAppointment): Promise<void> => {
+  mockStartDate = form.start
+  mockEndDate = form.end
+
   return api.post('availability/BookSlot', {
     Start: form.start,
     End: form.end,

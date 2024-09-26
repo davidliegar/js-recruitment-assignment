@@ -14,7 +14,9 @@ export async function api<T>(path: string, method: 'get' | 'post', body?: any): 
     throw new Error(response.statusText)
   }
 
-  return await response.json() as T
+  const string = await response.text()
+  const json = string === "" ? undefined : JSON.parse(string)
+  return json
 }
 
 export async function get<T>(path: string): Promise<T> {

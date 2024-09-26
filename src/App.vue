@@ -11,7 +11,7 @@
         class="current-appointment"
       >
         <Icon class="icon" icon="radix-icons:calendar" />
-        <p class="paragraph">{{ format(data.appointment.date, "'On' EEEE dd, LLL yyyy 'at' HH:mm") }}</p>
+        <p class="paragraph">{{ format(data.appointment.start, "'On' EEEE dd, LLL yyyy 'at' HH:mm") }}</p>
       </card-wrapper>
   </section>
 
@@ -115,16 +115,18 @@ function openModal (slot: SlotTime) {
   data.openModal = true
 }
 
-function saveForm({ comments, ...patient }: BookSlotForm) {
+async function saveForm({ comments, ...patient }: BookSlotForm) {
   data.form.comments = comments
   data.form.patient = patient
   if (isAValidBookAppointment(data.form)) {
     try {
-      bookSlot(data.form)
+      await bookSlot(data.form)
     } finally {
       data.openModal = false
     }
   }
+
+  data.appointment = await getCurrentAppointment()
 }
 
 created()
