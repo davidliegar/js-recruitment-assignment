@@ -1,5 +1,5 @@
 import { toDate, format, addDays, previousMonday, set } from 'date-fns'
-import api from '@/modules/http/infrastructure'
+import { api } from "@book-appointment/modules"
 import type { GetWeeklySlotsApi } from './appointmentTypes'
 import type { WeekSlots } from '../domain/weekSlots'
 import type { Appointment, BookAppointment } from '../domain/appointment'

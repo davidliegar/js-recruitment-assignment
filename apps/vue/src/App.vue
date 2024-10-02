@@ -77,7 +77,7 @@ import {
   type WeekSlots,
   type BookAppointment,
   type SlotTime
-} from "@/modules/appointment"
+} from "@book-appointment/modules"
 
 import IconButton from '@/components/DocButton.vue'
 import DaySchedule from '@/components/DaySchedule.vue'
