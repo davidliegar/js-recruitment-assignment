@@ -1,6 +1,9 @@
 <div
   class="card-wrapper"
-  [ngClass]="{ 'expandable': expandFrom, 'expanded': seeMore }"
+  [ngClass]="{
+    'expandable': expandFrom,
+    'expanded': seeMore,
+    'error': variant === 'error' }"
   [style.maxHeight]="expandFrom && !seeMore ? expandFrom : '9999px'"
   >
   <ng-content></ng-content>

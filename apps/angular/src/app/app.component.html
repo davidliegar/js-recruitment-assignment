@@ -20,6 +20,10 @@
     <p class="paragraph">You can change the appointment for when it suits you better</p>
   </section>
 
+  <app-card-wrapper *ngIf="weekSlotsError" variant="error">
+    {{ weekSlotsError.message }}
+  </app-card-wrapper>
+
   <app-card-wrapper
     *ngIf="weekSlots"
     expandFrom="500px"

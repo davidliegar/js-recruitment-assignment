@@ -15,6 +15,7 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class CardWrapper {
   @Input() expandFrom?: string;
+  @Input() variant?: 'primary' | 'error' = 'primary';
   seeMore = false;
 
   toggleSeeMore() {

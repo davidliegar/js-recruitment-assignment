@@ -54,6 +54,8 @@ body {
   --blue-400: #2f77ec;
   --blue-500: #0828b6f1;
 
+  --red-500: #e20c0cf1;
+
   --radius-xs: 4px;
   --radius-md: 8px;
 
@@ -75,6 +77,8 @@ body {
   --color-background-primary-strong: var(--blue-400);
 
   --color-color-primary: var(--blue-500);
+
+  --color-color-error: var(--red-500);
 }
 
 @media (prefers-color-scheme: dark) {

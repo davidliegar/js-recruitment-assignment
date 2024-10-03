@@ -35,18 +35,22 @@ export const getWeeklySlots = async (dateInput: Date): Promise<WeekSlots> => {
     [format(addDays(prevMonday, 6), 'yyyy-MM-dd')]: [],
   }
 
-  const info = await api.get<GetWeeklySlotsApi>(`availability/GetWeeklySlots/${format(prevMonday, 'yyyyMMdd')}`)
-  
-  const infoMapped = info.map(slot => ({
-    start: toDate(slot.Start),
-    end: toDate(slot.End)
-  }))
+  try {
+    const info = await api.get<GetWeeklySlotsApi>(`availability/GetWeeklySlots/${format(prevMonday, 'yyyyMMdd')}`)
+    
+    const infoMapped = info.map(slot => ({
+      start: toDate(slot.Start),
+      end: toDate(slot.End)
+    }))
 
-  return {
-    ...defaultCalendar,
-    ...Object.groupBy(infoMapped, (slot) => {
-      return format(slot.start, 'yyyy-MM-dd')
-    })
+    return {
+      ...defaultCalendar,
+      ...Object.groupBy(infoMapped, (slot) => {
+        return format(slot.start, 'yyyy-MM-dd')
+      })
+    }
+  } catch (error) {
+    throw new Error('There was an error retrieving the available slots for the week')
   }
 }
 

@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { NgIf, NgFor, KeyValuePipe } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { DocButtonComponent } from '../components/doc-button/doc-button.component';
@@ -58,6 +58,10 @@ export class AppComponent {
 
   get weekSlots() {
     return this.slotsService.data()
+  }
+
+  get weekSlotsError()  {
+    return this.slotsService.error()
   }
 
   async getPrevSchedule() {
