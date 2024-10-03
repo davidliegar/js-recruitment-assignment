@@ -1,20 +1,22 @@
 import { Component, computed } from '@angular/core';
 import { NgIf, NgFor, KeyValuePipe } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { DocButtonComponent } from '../components/doc-button/doc-button.component';
-import { CardWrapper } from '../components/card-wrapper/card-wrapper.component';
-import { DaySchedule } from '../components/day-schedule/day-schedule.component';
-
 import { addWeeks, format } from 'date-fns'
 import { MatIcon } from '@angular/material/icon';
+
 import {
   bookSlot,
   isAValidBookAppointment,
   type BookAppointment,
   type SlotTime
 } from "@book-appointment/modules"
+
+import { DocButtonComponent } from '../components/doc-button/doc-button.component';
+import { CardWrapper } from '../components/card-wrapper/card-wrapper.component';
+import { DaySchedule } from '../components/day-schedule/day-schedule.component';
 import { SlotTimeButtonComponent } from "../components/slot-time-button/slot-time-button.component";
 import { BookSlotModal, type BookSlotForm } from "../components/book-slot-modal/book-slot-modal.component";
+
 import { AppointmentsService } from '../services/appointments.service';
 import { SlotsService } from '../services/slots.service';
 

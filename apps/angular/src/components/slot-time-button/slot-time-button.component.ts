@@ -6,7 +6,7 @@ import { SlotTime } from '@book-appointment/modules';
 
 @Component({
   standalone: true,
-  selector: 'app-slot-time-button',
+  selector: 'slot-time-button',
   templateUrl: './slot-time-button.component.html',
   styleUrl: './slot-time-button.component.css',
   imports: [

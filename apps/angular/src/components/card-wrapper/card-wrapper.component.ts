@@ -4,7 +4,7 @@ import { MatIcon } from '@angular/material/icon';
 
 @Component({
   standalone: true,
-  selector: 'app-card-wrapper',
+  selector: 'card-wrapper',
   templateUrl: './card-wrapper.component.html',
   styleUrl: './card-wrapper.component.css',
   imports: [

@@ -2,11 +2,11 @@
   <p>{{ formatDate(date, 'EE') }}</p>
   <p>{{ formatDate(date, 'dd MMM') }}</p>
 
-  <app-slot-time-button
+  <slot-time-button
     *ngFor="let slot of daySchedule; let index = index"
     class="slot-time"
     [slotTime]="slot"
     (onClick)="handleClick(slot)"
     [attr.data-key]="generateKey(date, index)"
-  ></app-slot-time-button>
+  ></slot-time-button>
 </div>

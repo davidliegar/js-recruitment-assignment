@@ -13,7 +13,7 @@ export interface BookSlotForm {
 
 @Component({
   standalone: true,
-  selector: 'app-book-slot-modal',
+  selector: 'book-slot-modal',
   templateUrl: './book-slot-modal.component.html',
   styleUrl: './book-slot-modal.component.css',
   imports: [

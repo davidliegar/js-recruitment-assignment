@@ -6,7 +6,7 @@ import { SlotTimeButtonComponent } from '../slot-time-button/slot-time-button.co
 
 @Component({
   standalone: true,
-  selector: 'app-day-schedule',
+  selector: 'day-schedule',
   templateUrl: './day-schedule.component.html',
   styleUrl: './day-schedule.component.css',
   imports: [

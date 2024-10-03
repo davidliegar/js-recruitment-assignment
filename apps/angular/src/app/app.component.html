@@ -5,12 +5,12 @@
       <strong>{{ appointment?.doctorName }}</strong>
     </h2>
 
-    <app-card-wrapper *ngIf="appointment" class="current-appointment-card">
+    <card-wrapper *ngIf="appointment" class="current-appointment-card">
       <div class="current-appointment">
         <mat-icon fontIcon="calendar_month"></mat-icon>
         <p class="paragraph">{{ formattedDate() }}</p>
       </div>
-    </app-card-wrapper>
+    </card-wrapper>
   </section>
 
   <section class="unexpected-situation">
@@ -20,29 +20,29 @@
     <p class="paragraph">You can change the appointment for when it suits you better</p>
   </section>
 
-  <app-card-wrapper *ngIf="weekSlotsError" variant="error">
+  <card-wrapper *ngIf="weekSlotsError" variant="error">
     {{ weekSlotsError.message }}
-  </app-card-wrapper>
+  </card-wrapper>
 
-  <app-card-wrapper
+  <card-wrapper
     *ngIf="weekSlots"
     expandFrom="500px"
   >
     <div class="calendar">
-      <app-doc-button
+      <doc-button
         icon="chevron_left"
         (onClick)="getPrevSchedule()"
       />
 
-      <app-day-schedule
+      <day-schedule
         *ngFor="let item of weekSlots | keyvalue"
         class="day"
         [date]="item.key"
         [daySchedule]="item.value"
         (onClick)="onClickSlot($event)"
-      ></app-day-schedule>
+      ></day-schedule>
 
-      <app-doc-button
+      <doc-button
         icon="chevron_right"
         (onClick)="getNextSchedule()"
       />
@@ -53,13 +53,13 @@
     <p see-less>
       See less hours
     </p>
-  </app-card-wrapper>
+  </card-wrapper>
 
-  <app-book-slot-modal
+  <book-slot-modal
     [open]="openModal"
     (onClose)="openModal = false"
     (onSave)="saveForm($event)"
-  ></app-book-slot-modal>
+  ></book-slot-modal>
 
 </main>
 

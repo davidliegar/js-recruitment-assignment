@@ -3,7 +3,7 @@ import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/f
 
 @Component({
   standalone: true,
-  selector: 'app-doc-input',
+  selector: 'doc-input',
   templateUrl: './doc-input.component.html',
   styleUrl: './doc-input.component.css',
   imports: [

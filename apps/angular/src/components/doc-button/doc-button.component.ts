@@ -4,7 +4,7 @@ import { MatIcon } from '@angular/material/icon';
 
 @Component({
   standalone: true,
-  selector: 'app-doc-button',
+  selector: 'doc-button',
   templateUrl: './doc-button.component.html',
   styleUrl: './doc-button.component.css',
   imports: [

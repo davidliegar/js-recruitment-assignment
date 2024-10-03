@@ -65,6 +65,9 @@
               "buildTarget": "angular:build:development"
             }
           },
+          "options": {
+            "port": 8080
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
