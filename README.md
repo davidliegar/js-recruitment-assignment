@@ -23,13 +23,21 @@ npm install
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+npm run dev:vue
+```
+
+```sh
+npm run dev:angular
 ```
 
 ### Type-Check, Compile and Minify for Production
 
 ```sh
-npm run build
+npm run build:vue
+```
+
+```sh
+npm run build:angular
 ```
 
 ### Run Unit Tests with [Vitest](https://vitest.dev/)

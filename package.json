@@ -15,9 +15,7 @@
     "test:unit": "npm run test:unit --workspaces --if-present",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build --force",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "npm run lint --workspaces --if-present"
   },
   "dependencies": {
     "date-fns": "4.1.0",
