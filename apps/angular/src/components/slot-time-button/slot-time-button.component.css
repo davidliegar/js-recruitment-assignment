@@ -1,0 +1,21 @@
+.slot-time {
+  padding: 4px;
+  background: var(--color-background-primary);
+  color: var(--color-color-primary);
+  border-radius: var(--radius-xs);
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+
+  &:hover {
+    background: var(--color-background-primary-strong);
+  }
+
+  &.disabled {
+    background: var(--color-background);
+    color: var(--color-text-disabled);
+    text-decoration: line-through;
+    pointer-events: none;
+  }
+}

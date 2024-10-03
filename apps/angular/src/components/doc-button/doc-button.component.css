@@ -1,0 +1,49 @@
+.doc-button {
+  background: var(--bg);
+  color: var(--color);
+  border: 1px solid var(--color-background-primary-strong);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 8px 16px;
+}
+
+.doc-button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.doc-button.primary {
+  --bg: var(--color-background-primary);
+  --bg-hover: var(--color-background-primary-strong);
+  --color: var(--color-color-primary);
+}
+
+.doc-button.primary:hover {
+  background-color: var(--bg-hover);
+  color: var(--vt-c-white);
+}
+
+.doc-button.secondary {
+  --bg: var(--color-background);
+  --bg-hover: var(--color-background-soft);
+  --color: var(--color-color-primary);
+}
+
+.doc-button.secondary:hover {
+  background-color: var(--bg-hover);
+}
+
+.doc-button.with-icon {
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}

@@ -1,0 +1,18 @@
+<button
+  class="doc-button"
+  [ngClass]="{
+    'with-icon': icon,
+    disabled: disabled,
+    primary: variant === 'primary',
+    secondary: variant === 'secondary'
+  }"
+  (click)="handleClick()"
+>
+  <mat-icon
+    *ngIf="icon"
+    [fontIcon]="icon"
+    class="icon"
+    data-testid="icon"
+  ></mat-icon>
+  <ng-content></ng-content>
+</button>

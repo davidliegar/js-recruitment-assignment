@@ -1,4 +1,4 @@
-import { toDate, format, addDays, previousMonday, set } from 'date-fns'
+import { toDate, format, addDays, previousMonday, set, isMonday } from 'date-fns'
 import { api } from "@book-appointment/modules"
 import type { GetWeeklySlotsApi } from './appointmentTypes'
 import type { WeekSlots } from '../domain/weekSlots'
@@ -16,8 +16,14 @@ export const getCurrentAppointment = (): Promise<Appointment> => {
   })
 }
 
-export const getWeeklySlots = (dateInput: Date): Promise<WeekSlots> => {
-  const prevMonday = previousMonday(dateInput)
+export const getWeeklySlots = async (dateInput: Date): Promise<WeekSlots> => {
+  let prevMonday: Date
+
+  if (isMonday(dateInput)) {
+    prevMonday = dateInput
+  } else {
+    prevMonday = previousMonday(dateInput)
+  }
 
   const defaultCalendar = {
     [format(prevMonday, 'yyyy-MM-dd')]: [],
@@ -29,20 +35,19 @@ export const getWeeklySlots = (dateInput: Date): Promise<WeekSlots> => {
     [format(addDays(prevMonday, 6), 'yyyy-MM-dd')]: [],
   }
 
-  return api.get<GetWeeklySlotsApi>(`availability/GetWeeklySlots/${format(prevMonday, 'yyyyMMdd')}`)
-    .then(info => {
-      const infoMapped = info.map(slot => ({
-        start: toDate(slot.Start),
-        end: toDate(slot.End)
-      }))
+  const info = await api.get<GetWeeklySlotsApi>(`availability/GetWeeklySlots/${format(prevMonday, 'yyyyMMdd')}`)
+  
+  const infoMapped = info.map(slot => ({
+    start: toDate(slot.Start),
+    end: toDate(slot.End)
+  }))
 
-      return {
-        ...defaultCalendar,
-        ...Object.groupBy(infoMapped, (slot) => {
-          return format(slot.start, 'yyyy-MM-dd')
-        })
-      }
+  return {
+    ...defaultCalendar,
+    ...Object.groupBy(infoMapped, (slot) => {
+      return format(slot.start, 'yyyy-MM-dd')
     })
+  }
 }
 
 export const bookSlot = (form: BookAppointment): Promise<void> => {

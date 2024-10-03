@@ -9,9 +9,10 @@
   ],
   "scripts": {
     "dev:vue": "npm run dev -w apps/vue",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "test:unit": "vitest run --coverage",
+    "dev:angular": "npm run start -w apps/angular",
+    "build:vue": "npm run build -w apps/vue",
+    "build:angular": "npm run build -w apps/angular",
+    "test:unit": "npm run test:unit --workspaces --if-present",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "build-only": "vite build",

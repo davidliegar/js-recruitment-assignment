@@ -1,0 +1,63 @@
+<main class="main">
+  <section>
+    <h2>
+      Confirm your appointment with
+      <strong>{{ appointment?.doctorName }}</strong>
+    </h2>
+
+    <app-card-wrapper *ngIf="appointment" class="current-appointment-card">
+      <div class="current-appointment">
+        <mat-icon fontIcon="calendar_month"></mat-icon>
+        <p class="paragraph">{{ formattedDate() }}</p>
+      </div>
+    </app-card-wrapper>
+  </section>
+
+  <section class="unexpected-situation">
+    <h2>
+      <strong>You have an unexpected situation?</strong>
+    </h2>
+    <p class="paragraph">You can change the appointment for when it suits you better</p>
+  </section>
+
+  <app-card-wrapper
+    *ngIf="weekSlots"
+    expandFrom="500px"
+  >
+    <div class="calendar">
+      <app-doc-button
+        icon="chevron_left"
+        (onClick)="getPrevSchedule()"
+      />
+
+      <app-day-schedule
+        *ngFor="let item of weekSlots | keyvalue"
+        class="day"
+        [date]="item.key"
+        [daySchedule]="item.value"
+        (onClick)="onClickSlot($event)"
+      ></app-day-schedule>
+
+      <app-doc-button
+        icon="chevron_right"
+        (onClick)="getNextSchedule()"
+      />
+    </div>
+
+    <p see-more> See more hours </p>
+
+    <p see-less>
+      See less hours
+    </p>
+  </app-card-wrapper>
+
+  <app-book-slot-modal
+    [open]="openModal"
+    (onClose)="openModal = false"
+    (onSave)="saveForm($event)"
+  ></app-book-slot-modal>
+
+</main>
+
+
+<router-outlet />

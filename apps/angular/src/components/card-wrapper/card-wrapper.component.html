@@ -1,0 +1,22 @@
+<div
+  class="card-wrapper"
+  [ngClass]="{ 'expandable': expandFrom, 'expanded': seeMore }"
+  [style.maxHeight]="expandFrom && !seeMore ? expandFrom : '9999px'"
+  >
+  <ng-content></ng-content>
+
+  <button
+    *ngIf="expandFrom"
+    class="see-more"
+    (click)="toggleSeeMore()"
+  >
+    <ng-container *ngIf="seeMore">
+      <ng-content select="[see-less]"></ng-content>
+    </ng-container>
+    <ng-container *ngIf="!seeMore">
+      <ng-content select="[see-more]"></ng-content>
+    </ng-container>
+
+    <mat-icon class="icon" fontIcon="keyboard_arrow_down"></mat-icon>
+  </button>
+</div>

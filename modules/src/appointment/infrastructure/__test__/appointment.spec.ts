@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, type Mock } from 'vitest'
 import { getCurrentAppointment, getWeeklySlots, bookSlot } from '../appointment'
-import api from '@/modules/http/infrastructure'
+import { api } from '../../../http'
 import type { BookAppointment } from '../../domain/appointment'
-import '@/polyfill/objects'
+import '../../../polyfill/objects'
 
-vi.mock('@/modules/http/infrastructure', async () => {
+vi.mock('../../../http', async () => {
   return {
-    default: {
+    api: {
       get: vi.fn(),
       post: vi.fn()
     }
@@ -20,7 +20,8 @@ describe('Appointment Service', () => {
       expect(appointment).toEqual({
         doctorId: '1',
         doctorName: 'Dr Simeon Molas',
-        date: expect.any(Date)
+        start: expect.any(Date),
+        end: expect.any(Date)
       })
     })
   })

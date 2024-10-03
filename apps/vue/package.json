@@ -17,7 +17,8 @@
   "dependencies": {
     "date-fns": "4.1.0",
     "vue": "3.5.8",
-    "vue-router": "4.4.5"
+    "vue-router": "4.4.5",
+    "@book-appointment/modules": "*"
   },
   "devDependencies": {
     "@iconify/vue": "4.1.2",

@@ -1,0 +1,45 @@
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+strong {
+  font-weight: 700
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  padding: 32px;
+  text-align: center;
+  justify-items: center;
+  margin: 2rem 0;
+}
+
+.current-appointment-card {
+  margin: 2rem 0;
+  display: block;
+}
+
+.current-appointment {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  & .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  & .paragraph {
+    font-weight: 600;
+  }
+}
+
+.unexpected-situation {
+  & .paragraph {
+    font-size: 1.4rem;
+  }
+}

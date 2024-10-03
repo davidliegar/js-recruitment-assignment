@@ -1,0 +1,43 @@
+<dialog #modal class="dialog">
+  <form [formGroup]="form" (ngSubmit)="onSaveFn()">
+    <app-doc-input
+      label="First name"
+      placeholder="First name"
+      formControlName="name">
+    </app-doc-input>
+
+    <app-doc-input
+      label="Last name"
+      placeholder="Last name"
+      formControlName="lastName">
+    </app-doc-input>
+
+    <app-doc-input
+      label="Email"
+      placeholder="Email"
+      formControlName="email">
+    </app-doc-input>
+
+    <app-doc-input
+      label="Phone"
+      placeholder="Phone"
+      formControlName="phone">
+    </app-doc-input>
+
+    <app-doc-input
+      label="Comments"
+      placeholder="Comments"
+      formControlName="comments">
+    </app-doc-input>
+
+    <div class="buttons-wrapper">
+      <app-doc-button variant="secondary" (click)="onCloseFn()">Close</app-doc-button>
+      <app-doc-button
+        [disabled]="form.invalid"
+        type="submit"
+        data-testid="cta">
+        Book
+      </app-doc-button>
+    </div>
+  </form>
+</dialog>
